@@ -9,8 +9,6 @@ const PokemonList = () => {
       try {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon/');
         const results = response.data.results;
-
-        // Fetch details for each Pokemon
         const pokemonDetails = await Promise.all(
           results.map(async (pokemon) => {
             const detailsResponse = await axios.get(pokemon.url);
@@ -20,7 +18,7 @@ const PokemonList = () => {
 
         setPokemonList(pokemonDetails);
       } catch (error) {
-        console.error('Error fetching Pokemon data:', error);
+        console.error(error);
       }
     };
 
